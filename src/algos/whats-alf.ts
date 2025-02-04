@@ -5,6 +5,14 @@ import { AppContext } from '../config'
 export const shortname = 'whats-alf'
 
 export const handler = async (ctx: AppContext, params: QueryParams) => {
+
+  //const count = await ctx.db
+  //  .selectFrom('post')
+  //  .select(db.fn.count<number>('uri').as('count'))
+  //  .executeTakeFirst()
+  console.log('Posts in database:') //, count)
+
+
   let builder = ctx.db
     .selectFrom('post')
     .selectAll()

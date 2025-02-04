@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import FeedGenerator from './server'
+import { createDb, migrateToLatest } from './db'
 
 const run = async () => {
   dotenv.config()
@@ -20,6 +21,8 @@ const run = async () => {
     hostname,
     serviceDid,
   })
+  const db = createDb(server.cfg.sqliteLocation) 
+  await migrateToLatest(db) 
   await server.start()
   console.log(
     `🤖 running feed generator at http://${server.cfg.listenhost}:${server.cfg.port}`,
